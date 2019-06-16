@@ -1,13 +1,3 @@
-// In production, we register a service worker to serve assets from local cache.
-
-// This lets the app load faster on subsequent visits in production, and gives
-// it offline capabilities. However, it also means that developers (and users)
-// will only see deployed updates on the "N+1" visit to a page, since previously
-// cached resources are updated in the background.
-
-// To learn more about the benefits of this model, read https://goo.gl/KwvDNy.
-// This link also includes instructions on opting out of this behavior.
-
 const isLocalhost = Boolean(
   window.location.hostname === 'localhost' ||
     // [::1] is the IPv6 localhost address.
@@ -33,10 +23,10 @@ export default function register() {
       const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`;
 
       if (!isLocalhost) {
-        // Is not local host. Just register service worker
+        // Não é um host local. Somente registro service worker
         registerValidSW(swUrl);
       } else {
-        // This is running on localhost. Lets check if a service worker still exists or not.
+        // Isso está funcionando no localhost.
         checkValidServiceWorker(swUrl);
       }
     });
@@ -73,22 +63,22 @@ function registerValidSW(swUrl) {
 }
 
 function checkValidServiceWorker(swUrl) {
-  // Check if the service worker can be found. If it can't reload the page.
+  // Verificação do service worker que pode ser encontrado. E se caso não for encontrado, recarre novamente.
   fetch(swUrl)
     .then(response => {
-      // Ensure service worker exists, and that we really are getting a JS file.
+      // Garantir que o service worker esteja funcionando com os arquivos do JS.
       if (
         response.status === 404 ||
         response.headers.get('content-type').indexOf('javascript') === -1
       ) {
-        // No service worker found. Probably a different app. Reload the page.
+        // Dados não encontrado do service worker. Provavelmente um aplicativo diferente. Tente carregar a página novamente.
         navigator.serviceWorker.ready.then(registration => {
           registration.unregister().then(() => {
             window.location.reload();
           });
         });
       } else {
-        // Service worker found. Proceed as normal.
+        // Dados do Service worker encontrado. Proceda como normal.
         registerValidSW(swUrl);
       }
     })
