@@ -1,4 +1,4 @@
-# Udacity-myreads
+# Estantes de livros
 
 Myreads é projeto definido pela udacity react nanodegree, para explorar os conhecimentos adquiridos na primeira sessão do curso.
 
